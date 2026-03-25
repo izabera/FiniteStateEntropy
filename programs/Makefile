@@ -55,7 +55,7 @@ endif
 default: fse
 
 .PHONY: all
-all: fse fullbench fuzzer fuzzerU16 fuzzerHuff0 probagen
+all: fse fse_example fullbench fuzzer fuzzerU16 fuzzerHuff0 probagen
 
 .PHONY: all32
 all32: fse32 fullbench32 fuzzer32 fuzzerU16_32 fuzzerHuff0_32
@@ -97,12 +97,17 @@ fullbench fullbench32 fullbenchx32: fullbench.c xxhash.c $(FSEDIR)/entropy_commo
                                     $(FSEDIR)/huf_compress.c $(FSEDIR)/huf_decompress.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
 
+fse_example: fse_example.c $(FSEDIR)/entropy_common.c $(FSEDIR)/hist.c \
+             $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c
+	$(CC) $(FLAGS) $^ -o $@$(EXT)
+
 probagen: probaGenerator.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
 
 .PHONY: clean
 clean:
 	@$(RM) fse$(EXT) fse32$(EXT) fsex32$(EXT) fullbench$(EXT) fullbench32$(EXT) fullbenchx32$(EXT) probagen$(EXT)
+	@$(RM) fse_example$(EXT)
 	@$(RM) fuzzer$(EXT) fuzzer32$(EXT) fuzzerU16$(EXT) fuzzerU16_32$(EXT) fuzzerHuff0$(EXT) fuzzerHuff0_32$(EXT)
 	@$(RM) core *.o tmp result proba.bin
 	@echo Cleaning completed
