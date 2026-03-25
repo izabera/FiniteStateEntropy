@@ -33,6 +33,11 @@ fse:
 	$(MAKE) -C $(PROGDIR) $@
 	cp $(PROGDIR)/fse .
 
+.PHONY: fse_example
+fse_example:
+	$(MAKE) -C $(PROGDIR) $@
+	cp $(PROGDIR)/fse_example .
+
 .PHONY: check
 check: fse
 	$(MAKE) -C $(PROGDIR) $@
