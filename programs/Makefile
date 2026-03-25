@@ -98,7 +98,7 @@ fullbench fullbench32 fullbenchx32: fullbench.c xxhash.c $(FSEDIR)/entropy_commo
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
 
 fse_example: fse_example.c $(FSEDIR)/entropy_common.c $(FSEDIR)/hist.c \
-             $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c
+             $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c $(FSEDIR)/fseU16.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
 
 probagen: probaGenerator.c
